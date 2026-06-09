@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VS Code
+.vscode/
+
+# Temporary files
+temp/
+tmp/
+tempCodeRunnerFile.python
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# MultiQC and FastQC outputs
+multiqc/
+multiqc_report.html
+fastqscreen_multiqc/
+
+# Large analysis outputs
+project outputs(oral-gut)/
+lib/
+
+# Raw sequencing files
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.sam
+
+# Large databases
+kraken_db/
+kraken2_db/
+VFDB/
+MetaCyc/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# OneDrive temporary files
+~$*
