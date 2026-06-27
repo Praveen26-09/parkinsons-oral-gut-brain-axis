@@ -1,33 +1,52 @@
+```gitignore
+# ==========================
 # Python
+# ==========================
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
-# VS Code
-.vscode/
-
-# Temporary files
-temp/
-tmp/
-tempCodeRunnerFile.python
+# Virtual environments
+.venv/
+venv/
+env/
 
 # Jupyter
 .ipynb_checkpoints/
 
+# ==========================
+# IDEs
+# ==========================
+.vscode/
+.idea/
+
+# ==========================
+# Temporary files
+# ==========================
+temp/
+tmp/
+*.tmp
+tempCodeRunnerFile.py
+
+# ==========================
 # Logs
+# ==========================
 *.log
 
-# MultiQC and FastQC outputs
-multiqc/
-multiqc_report.html
-fastqscreen_multiqc/
+# ==========================
+# Operating System
+# ==========================
+.DS_Store
+Thumbs.db
 
-# Large analysis outputs
-project outputs(oral-gut)/
-lib/
+# ==========================
+# OneDrive temporary files
+# ==========================
+~$*
 
-# Raw sequencing files
+# ==========================
+# Raw sequencing data
+# ==========================
 *.fastq
 *.fastq.gz
 *.fq
@@ -35,15 +54,56 @@ lib/
 *.bam
 *.sam
 
+# ==========================
 # Large databases
+# ==========================
 kraken_db/
 kraken2_db/
 VFDB/
 MetaCyc/
+HUMAnN_databases/
+bowtie2_indexes/
 
-# Operating system files
-.DS_Store
-Thumbs.db
+# ==========================
+# QC Outputs
+# ==========================
+multiqc/
+multiqc_report.html
+fastqscreen_multiqc/
 
-# OneDrive temporary files
-~$*
+# ==========================
+# Large analysis outputs
+# ==========================
+project outputs(oral-gut)/
+results/temp/
+lib/
+
+# ==========================
+# Compressed files
+# ==========================
+*.zip
+*.tar
+*.tar.gz
+*.gz
+*.7z
+
+# ==========================
+# Environment variables
+# ==========================
+.env
+.env.*
+
+# ==========================
+# Python packaging
+# ==========================
+build/
+dist/
+*.egg-info/
+
+# ==========================
+# R
+# ==========================
+.Rhistory
+.RData
+.Rproj.user/
+```
