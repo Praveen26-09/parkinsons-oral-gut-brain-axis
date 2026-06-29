@@ -1,0 +1,189 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: white;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+<style>
+.legend-box {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #ccc;
+    padding: 12px;
+    z-index: 999;
+    font-size: 14px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+    border-radius: 8px;
+}
+.legend-item {
+    margin-bottom: 6px;
+}
+.legend-color {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    border-radius: 3px;
+}
+</style>
+
+<div class="legend-box">
+  <div><b>Legend</b></div>
+  <div class="legend-item"><span class="legend-color" style="background:lightblue;"></span>Microbe</div>
+  <div class="legend-item"><span class="legend-color" style="background:green;"></span>Virulence</div>
+  <div class="legend-item"><span class="legend-color" style="background:purple;"></span>Pathway</div>
+  <div class="legend-item"><span class="legend-color" style="background:orange;"></span>Metabolite</div>
+  <div class="legend-item"><span class="legend-color" style="background:red;"></span>Parkinson Disease</div>
+</div>
+
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "lightblue", "id": "Streptomyces albidoflavus", "label": "Streptomyces albidoflavus", "shape": "dot"}, {"color": "lightblue", "id": "Akkermansia sp. BCRC 18949", "label": "Akkermansia sp. BCRC 18949", "shape": "dot"}, {"color": "lightblue", "id": "Streptococcus sp. oral taxon 431", "label": "Streptococcus sp. oral taxon 431", "shape": "dot"}, {"color": "lightblue", "id": "Streptococcus sp. K0074", "label": "Streptococcus sp. K0074", "shape": "dot"}, {"color": "lightblue", "id": "Porphyromonas endodontalis", "label": "Porphyromonas endodontalis", "shape": "dot"}, {"color": "lightblue", "id": "Prevotella histicola", "label": "Prevotella histicola", "shape": "dot"}, {"color": "lightblue", "id": "Aggregatibacter sp. 2125159857", "label": "Aggregatibacter sp. 2125159857", "shape": "dot"}, {"color": "lightblue", "id": "Actinomyces sp. oral taxon 169", "label": "Actinomyces sp. oral taxon 169", "shape": "dot"}, {"color": "lightblue", "id": "Schaalia odontolytica", "label": "Schaalia odontolytica", "shape": "dot"}, {"color": "lightblue", "id": "Schaalia meyeri", "label": "Schaalia meyeri", "shape": "dot"}, {"color": "lightblue", "id": "Actinomyces pacaensis", "label": "Actinomyces pacaensis", "shape": "dot"}, {"color": "lightblue", "id": "Prevotella sp. oral taxon 313", "label": "Prevotella sp. oral taxon 313", "shape": "dot"}, {"color": "lightblue", "id": "Streptococcus nidrosiense", "label": "Streptococcus nidrosiense", "shape": "dot"}, {"color": "lightblue", "id": "Streptococcus sp. KHUD_016", "label": "Streptococcus sp. KHUD_016", "shape": "dot"}, {"color": "lightblue", "id": "Streptococcus sp. DTU_2020_1000888_1_SI_GRL_NUU_041A", "label": "Streptococcus sp. DTU_2020_1000888_1_SI_GRL_NUU_041A", "shape": "dot"}, {"color": "lightblue", "id": "Streptococcus sp. DTU_2020_1001019_1_SI_AUS_MUR_006", "label": "Streptococcus sp. DTU_2020_1001019_1_SI_AUS_MUR_006", "shape": "dot"}, {"color": "lightblue", "id": "Streptococcus sp. A12", "label": "Streptococcus sp. A12", "shape": "dot"}, {"color": "lightblue", "id": "Streptococcus gwangjuensis", "label": "Streptococcus gwangjuensis", "shape": "dot"}, {"color": "lightblue", "id": "Streptococcus sp. 11-4097", "label": "Streptococcus sp. 11-4097", "shape": "dot"}, {"color": "green", "id": "Redox Stress", "label": "Redox Stress", "shape": "dot"}, {"color": "green", "id": "Metabolic Modulation", "label": "Metabolic Modulation", "shape": "dot"}, {"color": "green", "id": "Adhesion", "label": "Adhesion", "shape": "dot"}, {"color": "green", "id": "Endotoxin", "label": "Endotoxin", "shape": "dot"}, {"color": "green", "id": "Protease", "label": "Protease", "shape": "dot"}, {"color": "green", "id": "Secretion System", "label": "Secretion System", "shape": "dot"}, {"color": "green", "id": "Toxin", "label": "Toxin", "shape": "dot"}, {"color": "green", "id": "Biofilm", "label": "Biofilm", "shape": "dot"}, {"color": "purple", "id": "Redox metabolism", "label": "Redox metabolism", "shape": "dot"}, {"color": "purple", "id": "Secondary metabolite biosynthesis", "label": "Secondary metabolite biosynthesis", "shape": "dot"}, {"color": "purple", "id": "Mucin degradation", "label": "Mucin degradation", "shape": "dot"}, {"color": "purple", "id": "SCFA production", "label": "SCFA production", "shape": "dot"}, {"color": "purple", "id": "Lactic acid fermentation", "label": "Lactic acid fermentation", "shape": "dot"}, {"color": "purple", "id": "Biofilm formation", "label": "Biofilm formation", "shape": "dot"}, {"color": "purple", "id": "LPS biosynthesis", "label": "LPS biosynthesis", "shape": "dot"}, {"color": "purple", "id": "Proteolysis", "label": "Proteolysis", "shape": "dot"}, {"color": "purple", "id": "Carbohydrate fermentation", "label": "Carbohydrate fermentation", "shape": "dot"}, {"color": "purple", "id": "Iron acquisition", "label": "Iron acquisition", "shape": "dot"}, {"color": "purple", "id": "Amino acid metabolism", "label": "Amino acid metabolism", "shape": "dot"}, {"color": "purple", "id": "Carbohydrate metabolism", "label": "Carbohydrate metabolism", "shape": "dot"}, {"color": "orange", "id": "Reactive oxygen species", "label": "Reactive oxygen species", "shape": "dot"}, {"color": "orange", "id": "Nitric oxide", "label": "Nitric oxide", "shape": "dot"}, {"color": "orange", "id": "Secondary metabolites", "label": "Secondary metabolites", "shape": "dot"}, {"color": "orange", "id": "Short-chain fatty acids", "label": "Short-chain fatty acids", "shape": "dot"}, {"color": "orange", "id": "Butyrate", "label": "Butyrate", "shape": "dot"}, {"color": "orange", "id": "Acetate", "label": "Acetate", "shape": "dot"}, {"color": "orange", "id": "Propionate", "label": "Propionate", "shape": "dot"}, {"color": "orange", "id": "Lactate", "label": "Lactate", "shape": "dot"}, {"color": "orange", "id": "Extracellular polymeric substances", "label": "Extracellular polymeric substances", "shape": "dot"}, {"color": "orange", "id": "Lipopolysaccharide", "label": "Lipopolysaccharide", "shape": "dot"}, {"color": "orange", "id": "Peptides", "label": "Peptides", "shape": "dot"}, {"color": "orange", "id": "Succinate", "label": "Succinate", "shape": "dot"}, {"color": "orange", "id": "Iron complexes", "label": "Iron complexes", "shape": "dot"}, {"color": "orange", "id": "Glutamate", "label": "Glutamate", "shape": "dot"}, {"color": "orange", "id": "GABA", "label": "GABA", "shape": "dot"}, {"color": "orange", "id": "Tryptophan", "label": "Tryptophan", "shape": "dot"}, {"color": "orange", "id": "Phenylalanine", "label": "Phenylalanine", "shape": "dot"}, {"color": "orange", "id": "Tyrosine", "label": "Tyrosine", "shape": "dot"}, {"color": "red", "id": "Parkinson Disease", "label": "Parkinson Disease", "shape": "dot", "size": 30}]);
+                  edges = new vis.DataSet([{"from": "Streptomyces albidoflavus", "to": "Redox Stress"}, {"from": "Redox Stress", "to": "Redox metabolism"}, {"from": "Redox metabolism", "to": "Reactive oxygen species"}, {"from": "Reactive oxygen species", "to": "Parkinson Disease"}, {"from": "Redox metabolism", "to": "Nitric oxide"}, {"from": "Nitric oxide", "to": "Parkinson Disease"}, {"from": "Redox Stress", "to": "Secondary metabolite biosynthesis"}, {"from": "Secondary metabolite biosynthesis", "to": "Secondary metabolites"}, {"from": "Secondary metabolites", "to": "Parkinson Disease"}, {"from": "Akkermansia sp. BCRC 18949", "to": "Metabolic Modulation"}, {"from": "Metabolic Modulation", "to": "Mucin degradation"}, {"from": "Mucin degradation", "to": "Short-chain fatty acids"}, {"from": "Short-chain fatty acids", "to": "Parkinson Disease"}, {"from": "Metabolic Modulation", "to": "SCFA production"}, {"from": "SCFA production", "to": "Butyrate"}, {"from": "Butyrate", "to": "Parkinson Disease"}, {"from": "SCFA production", "to": "Acetate"}, {"from": "Acetate", "to": "Parkinson Disease"}, {"from": "SCFA production", "to": "Propionate"}, {"from": "Propionate", "to": "Parkinson Disease"}, {"from": "Streptococcus sp. oral taxon 431", "to": "Adhesion"}, {"from": "Adhesion", "to": "Lactic acid fermentation"}, {"from": "Lactic acid fermentation", "to": "Lactate"}, {"from": "Lactate", "to": "Parkinson Disease"}, {"from": "Adhesion", "to": "Biofilm formation"}, {"from": "Biofilm formation", "to": "Extracellular polymeric substances"}, {"from": "Extracellular polymeric substances", "to": "Parkinson Disease"}, {"from": "Streptococcus sp. K0074", "to": "Adhesion"}, {"from": "Porphyromonas endodontalis", "to": "Endotoxin"}, {"from": "Endotoxin", "to": "LPS biosynthesis"}, {"from": "LPS biosynthesis", "to": "Lipopolysaccharide"}, {"from": "Lipopolysaccharide", "to": "Parkinson Disease"}, {"from": "Porphyromonas endodontalis", "to": "Protease"}, {"from": "Protease", "to": "LPS biosynthesis"}, {"from": "Endotoxin", "to": "Proteolysis"}, {"from": "Proteolysis", "to": "Peptides"}, {"from": "Peptides", "to": "Parkinson Disease"}, {"from": "Protease", "to": "Proteolysis"}, {"from": "Prevotella histicola", "to": "Secretion System"}, {"from": "Secretion System", "to": "Carbohydrate fermentation"}, {"from": "Carbohydrate fermentation", "to": "Succinate"}, {"from": "Succinate", "to": "Parkinson Disease"}, {"from": "Carbohydrate fermentation", "to": "Acetate"}, {"from": "Secretion System", "to": "SCFA production"}, {"from": "Aggregatibacter sp. 2125159857", "to": "Toxin"}, {"from": "Toxin", "to": "Biofilm formation"}, {"from": "Aggregatibacter sp. 2125159857", "to": "Adhesion"}, {"from": "Toxin", "to": "Iron acquisition"}, {"from": "Iron acquisition", "to": "Iron complexes"}, {"from": "Iron complexes", "to": "Parkinson Disease"}, {"from": "Adhesion", "to": "Iron acquisition"}, {"from": "Actinomyces sp. oral taxon 169", "to": "Biofilm"}, {"from": "Biofilm", "to": "Biofilm formation"}, {"from": "Biofilm", "to": "Amino acid metabolism"}, {"from": "Amino acid metabolism", "to": "Glutamate"}, {"from": "Glutamate", "to": "Parkinson Disease"}, {"from": "Amino acid metabolism", "to": "GABA"}, {"from": "GABA", "to": "Parkinson Disease"}, {"from": "Amino acid metabolism", "to": "Tryptophan"}, {"from": "Tryptophan", "to": "Parkinson Disease"}, {"from": "Amino acid metabolism", "to": "Phenylalanine"}, {"from": "Phenylalanine", "to": "Parkinson Disease"}, {"from": "Amino acid metabolism", "to": "Tyrosine"}, {"from": "Tyrosine", "to": "Parkinson Disease"}, {"from": "Schaalia odontolytica", "to": "Biofilm"}, {"from": "Schaalia meyeri", "to": "Biofilm"}, {"from": "Actinomyces pacaensis", "to": "Biofilm"}, {"from": "Prevotella sp. oral taxon 313", "to": "Secretion System"}, {"from": "Secretion System", "to": "Carbohydrate metabolism"}, {"from": "Carbohydrate metabolism", "to": "Lactate"}, {"from": "Secretion System", "to": "Biofilm formation"}, {"from": "Streptococcus nidrosiense", "to": "Adhesion"}, {"from": "Streptococcus sp. KHUD_016", "to": "Adhesion"}, {"from": "Streptococcus sp. DTU_2020_1000888_1_SI_GRL_NUU_041A", "to": "Lactic acid fermentation"}, {"from": "Streptococcus sp. DTU_2020_1001019_1_SI_AUS_MUR_006", "to": "Lactic acid fermentation"}, {"from": "Streptococcus sp. A12", "to": "Adhesion"}, {"from": "Streptococcus gwangjuensis", "to": "Adhesion"}, {"from": "Streptococcus sp. 11-4097", "to": "Adhesion"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
