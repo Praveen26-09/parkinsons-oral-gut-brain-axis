@@ -47,7 +47,6 @@ Samples Included:
 
 ## Workflow
 
-```
 <img width="1088" height="754" alt="image" src="https://github.com/user-attachments/assets/3d384a7f-6277-47c8-b1c0-ba926d2ee901" />
                 Public Shotgun Metagenomic Dataset
                            (PRJEB79944)
@@ -83,9 +82,7 @@ Samples Included:
                                ▼
                   Parkinson's Disease Biomarkers
 
-```
 
----
 
 ## Bioinformatics Tools
 
