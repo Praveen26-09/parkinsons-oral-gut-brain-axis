@@ -165,7 +165,6 @@ Evaluation Metrics:
 
 ## Repository Structure
 
-```
 
 ├── data/
 │   ├── metadata/
@@ -192,9 +191,6 @@ Evaluation Metrics:
 ├── requirements.txt
 └── LICENSE
 
-```
-
----
 
 ## Requirements
 
