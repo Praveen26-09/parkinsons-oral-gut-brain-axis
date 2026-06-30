@@ -49,58 +49,39 @@ Samples Included:
 
 ```
 <img width="1088" height="754" alt="image" src="https://github.com/user-attachments/assets/3d384a7f-6277-47c8-b1c0-ba926d2ee901" />
-
-Raw FASTQ Files
-│
-▼
-FastQC
-│
-▼
-MultiQC
-│
-▼
-fastp
-│
-▼
-KneadData
-│
-▼
-FastQ Screen
-│
-▼
-Kraken2
-│
-▼
-Bracken
-│
-▼
-Krona Visualization
-│
-▼
-Species Abundance Matrix
-│
-▼
-Alpha & Beta Diversity
-│
-▼
-Oral Enrichment Score (OES)
-│
-▼
-Functional Analysis
-(MetaCyc)
-│
-▼
-Virulence Analysis (VFDB)
-│
-▼
-Network Construction (PyVis)
-│
-▼
-Machine Learning
-(Random Forest & XGBoost)
-│
-▼
-Microbial Biomarker Discovery
+                Public Shotgun Metagenomic Dataset
+                           (PRJEB79944)
+                                   │
+                                   ▼
+                  Internal Preprocessing Pipeline*
+                                   │
+        (*Not included due to confidentiality restrictions)
+                                   │
+                                   ▼
+                     Species Abundance Matrix
+                                   │
+                ┌──────────────────┴──────────────────┐
+                ▼                                     ▼
+        R Microbiome Analysis                 Machine Learning
+                │                                     │
+      • Alpha Diversity                      • Feature Engineering
+      • Beta Diversity                       • SMOTE
+      • DESeq2                               • XGBoost
+      • Oral Enrichment Score                • Random Forest
+      • Differential Abundance               • Cross Validation
+                │                                     │
+                └──────────────┬──────────────────────┘
+                               ▼
+                   Biomarker Identification
+                               │
+                               ▼
+                 Virulence & MetaCyc Annotation
+                               │
+                               ▼
+                 Integrated Mechanistic Network
+                               │
+                               ▼
+                  Parkinson's Disease Biomarkers
 
 ```
 
