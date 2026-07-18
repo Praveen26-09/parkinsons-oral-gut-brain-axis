@@ -1,5 +1,7 @@
 ```markdown
 # Multi-Omics Characterization of the Oral-Gut-Brain Axis in Parkinson's Disease
+Shotgun Metagenomics | HUMAnN3 | Kraken2 | Machine Learning | XGBoost | Network Analysis
+<img width="822" height="651" alt="image" src="https://github.com/user-attachments/assets/12dc826c-1c30-4dfe-9fe3-5923773b9880" />
 
 ## Overview
 
