@@ -1,94 +1,82 @@
-```markdown
-# Multi-Omics Characterization of the Oral-Gut-Brain Axis in Parkinson's Disease
-Shotgun Metagenomics | HUMAnN3 | Kraken2 | Machine Learning | XGBoost | Network Analysis
-<img width="822" height="651" alt="image" src="https://github.com/user-attachments/assets/12dc826c-1c30-4dfe-9fe3-5923773b9880" />
+# 🧬 Multi-Omics Characterization of the Oral–Gut–Brain Axis in Parkinson's Disease
 
-## Overview
-
-This repository contains the source code, analysis workflow, and supporting files for my Master's thesis submitted in partial fulfillment of the Master of Science (M.Sc.) in Bioinformatics at REVA University.
-
-The project investigates the role of the **Oral–Gut–Brain Axis** in **Parkinson's Disease (PD)** using **shotgun metagenomics**, **functional microbiome analysis**, and **machine learning** to identify microbial translocation signatures and predictive biomarkers.
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![R](https://img.shields.io/badge/R-4.5-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-XGBoost-orange)
+![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Metagenomics-success)
+![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
 
 ---
 
-## Project Title
+## 📖 Overview
 
-**Multi-Omics Characterization of the Oral-Gut-Brain Axis in Parkinson's Disease: Identification of Microbial Translocation Signatures and Biomarkers**
+This repository contains the source code, analysis workflow, documentation, and supporting files for my **Master of Science (M.Sc.) Bioinformatics Thesis** submitted to **REVA University**.
+
+The project investigates the **Oral–Gut–Brain Axis** in **Parkinson's Disease (PD)** using **shotgun metagenomics**, **functional microbiome analysis**, **network biology**, and **machine learning** to identify microbial translocation signatures and predictive biomarkers associated with disease progression.
 
 ---
 
-## Research Objectives
+## 📌 Project Title
 
-- Investigate oral and gut microbial dysbiosis associated with Parkinson's Disease.
+**Multi-Omics Characterization of the Oral–Gut–Brain Axis in Parkinson's Disease: Identification of Microbial Translocation Signatures and Biomarkers**
+
+---
+
+# 🖼 Methodology
+
+<p align="center">
+<img src="methodology.png" width="900">
+</p>
+
+---
+
+# 🔬 Research Objectives
+
+- Investigate oral and gut microbial dysbiosis in Parkinson's Disease.
 - Identify oral-to-gut microbial translocation signatures.
-- Characterize microbial functional pathways and virulence factors.
-- Develop machine learning models for Parkinson's disease prediction.
-- Discover microbial biomarkers associated with disease progression.
+- Characterize microbial functional pathways.
+- Explore virulence factor enrichment.
+- Develop machine learning models for disease prediction.
+- Identify microbial biomarkers associated with disease progression.
 
 ---
 
-## Dataset
+# 📂 Dataset
 
-**Project ID:** PRJEB79944
+| Item | Description |
+|------|-------------|
+| Project ID | PRJEB79944 |
+| Source | European Nucleotide Archive (ENA) |
+| Data Type | Shotgun Metagenomics |
+| Total Samples | 241 |
 
-Source:
-- NCBI Sequence Read Archive (SRA)
+### Clinical Groups
 
-Samples Included:
-
-| Clinical Group | Samples |
-|---------------|---------|
+| Group | Samples |
+|-------|---------|
 | Healthy Controls (HC) | 52 |
 | Parkinson's Disease (PD) | 20 |
 | PD with Mild Cognitive Impairment (PD-MCI) | 78 |
 | Parkinson's Disease Dementia (PDD) | 91 |
 
-**Total Samples:** 241
+---
+
+# 🔄 Analysis Workflow
+
+<p align="center">
+<img src="workflow.png" width="950">
+</p>
+
+> **Note**
+>
+> Raw sequencing preprocessing was performed using an institutional pipeline. The preprocessing workflow is **not included** due to confidentiality restrictions. All downstream statistical analyses, machine learning models, visualization scripts, and biomarker analyses are available in this repository.
 
 ---
 
-## Workflow
+# 🛠 Bioinformatics Pipeline
 
-<img width="1088" height="754" alt="image" src="https://github.com/user-attachments/assets/3d384a7f-6277-47c8-b1c0-ba926d2ee901" />
-                Public Shotgun Metagenomic Dataset
-                           (PRJEB79944)
-                                   │
-                                   ▼
-                  Internal Preprocessing Pipeline*
-                                   │
-        (*Not included due to confidentiality restrictions)
-                                   │
-                                   ▼
-                     Species Abundance Matrix
-                                   │
-                ┌──────────────────┴──────────────────┐
-                ▼                                     ▼
-        R Microbiome Analysis                 Machine Learning
-                │                                     │
-      • Alpha Diversity                      • Feature Engineering
-      • Beta Diversity                       • SMOTE
-      • DESeq2                               • XGBoost
-      • Oral Enrichment Score                • Random Forest
-      • Differential Abundance               • Cross Validation
-                │                                     │
-                └──────────────┬──────────────────────┘
-                               ▼
-                   Biomarker Identification
-                               │
-                               ▼
-                 Virulence & MetaCyc Annotation
-                               │
-                               ▼
-                 Integrated Mechanistic Network
-                               │
-                               ▼
-                  Parkinson's Disease Biomarkers
-
-
-
-## Bioinformatics Tools
-
-### Quality Control
+## Quality Control
 
 - FastQC
 - MultiQC
@@ -96,54 +84,77 @@ Samples Included:
 - KneadData
 - FastQ Screen
 
-### Taxonomic Profiling
+## Taxonomic Profiling
 
 - Kraken2
 - Bracken
 - Krona
 
-### Functional Analysis
+## Functional Profiling
 
+- HUMAnN3
 - MetaCyc
 - VFDB
 
-### Programming
+## Statistical Analysis
 
-- Python
-- R
+- DESeq2
+- Alpha Diversity
+- Beta Diversity
+- Differential Abundance
+- Oral Enrichment Score (OES)
 
-### Machine Learning
+## Machine Learning
 
 - XGBoost
 - Random Forest
 - SMOTE
-- SHAP
+- Feature Engineering
+- Cross Validation
+- SHAP Explainability
 
-### Visualization
+## Visualization
 
 - Matplotlib
 - Seaborn
+- Plotly
 - PyVis
+- NetworkX
 
 ---
 
-## Machine Learning Pipeline
+# ⚙ Technologies Used
 
-Features used:
+| Category | Tools |
+|-----------|------|
+| Programming | Python, R |
+| Workflow | Nextflow |
+| Taxonomy | Kraken2, Bracken |
+| Functional Analysis | HUMAnN3, MetaCyc, VFDB |
+| Statistics | DESeq2 |
+| Machine Learning | XGBoost, Random Forest |
+| Visualization | Matplotlib, Seaborn, PyVis |
+| Networks | NetworkX |
+
+---
+
+# 🤖 Machine Learning Pipeline
+
+### Features
 
 - Species abundance
 - Alpha diversity
 - Beta diversity
-- Oral Enrichment Score (OES)
+- Oral Enrichment Score
 - Functional pathways
-- Virulence signatures
+- Virulence factors
 
-Models:
+### Models
 
 - Random Forest
 - XGBoost
 
-Evaluation Metrics:
+### Evaluation Metrics
 
 - Accuracy
 - Precision
@@ -154,20 +165,22 @@ Evaluation Metrics:
 
 ---
 
-## Key Findings
+# 📊 Key Findings
 
-- Oral microbial dysbiosis increases with Parkinson's disease progression.
-- Elevated Oral Enrichment Score suggests oral-to-gut microbial translocation.
-- Functional pathway alterations indicate increased inflammatory activity.
-- Virulence factor enrichment supports microbial involvement in neurodegeneration.
-- XGBoost demonstrated excellent predictive performance for Parkinson's disease classification.
-- Multiple microbial biomarkers associated with disease progression were identified.
+- Oral microbial dysbiosis progressively increased across Parkinson's disease stages.
+- Elevated Oral Enrichment Score indicated potential oral-to-gut microbial translocation.
+- Functional pathway alterations suggested increased inflammatory activity.
+- Virulence factor enrichment supported microbial involvement in neurodegeneration.
+- Machine learning models accurately classified disease status.
+- Several microbial biomarkers associated with Parkinson's disease progression were identified.
 
 ---
 
-## Repository Structure
+# 📁 Repository Structure
 
-
+```text
+parkinsons-oral-gut-brain-axis
+│
 ├── data/
 │   ├── metadata/
 │   ├── processed/
@@ -185,65 +198,111 @@ Evaluation Metrics:
 │
 ├── figures/
 │
-├── results/
+├── Results/
 │
 ├── docs/
 │
+├── methodology.png
+├── workflow.png
 ├── README.md
 ├── requirements.txt
 └── LICENSE
-
-
-## Requirements
-
-Python packages
-
 ```
 
-pandas
+---
+
+# 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/Praveen26-09/parkinsons-oral-gut-brain-axis.git
+```
+
+Move into the project
+
+```bash
+cd parkinsons-oral-gut-brain-axis
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# 📦 Requirements
+
+Python **3.10+**
+
+Major packages
+
+```text
 numpy
+pandas
 scikit-learn
 xgboost
-imbalanced-learn
 matplotlib
 seaborn
-biopython
 networkx
 pyvis
-
-```
-
-R packages
-
-```
-
-phyloseq
-vegan
-ggplot2
-DESeq2
-tidyverse
-
+scipy
+shap
+biopython
 ```
 
 ---
 
-## Citation
+# 📈 Results
 
-If you use this repository in your research, please cite:
+The repository contains
 
+- Microbial diversity analysis
+- Differential abundance analysis
+- Oral Enrichment Score
+- Biomarker discovery
+- Functional pathway analysis
+- Virulence factor analysis
+- Machine learning models
+- Feature importance
+- Network analysis
+
+> **Note:** Due to repository size limitations, some large intermediate datasets are not included.
+
+---
+
+# 🔮 Future Work
+
+- External validation using independent cohorts
+- Multi-omics integration
+- Metabolomics analysis
+- Explainable AI
+- Clinical biomarker validation
+- Longitudinal microbiome studies
+
+---
+
+# 📄 Citation
+
+If you use this work in your research, please cite:
+
+```text
 Praveen Kumar S.
 
-**Multi-Omics Characterization of the Oral-Gut-Brain Axis in Parkinson's Disease: Identification of Microbial Translocation Signatures and Biomarkers.**
+Multi-Omics Characterization of the Oral–Gut–Brain Axis in Parkinson's Disease:
+Identification of Microbial Translocation Signatures and Biomarkers.
 
-Master's Thesis
-
+Master of Science Thesis
+Department of Bioinformatics
 REVA University
-
 2026
+```
 
 ---
 
-## Author
+# 👨‍💻 Author
 
 **Praveen Kumar S**
 
@@ -251,13 +310,27 @@ M.Sc. Bioinformatics
 
 REVA University
 
-Bengaluru, India
+📧 Email: your_email@example.com
 
-GitHub: https://github.com/Praveen26-09
+💼 LinkedIn:
+https://linkedin.com/in/your-profile
 
 ---
 
-## License
+# ⭐ Acknowledgements
 
-This project is released under the MIT License.
-```
+I sincerely thank
+
+- REVA University
+- Department of Bioinformatics
+- Dr. Agnik Haldar (Internal Guide)
+- Ms. Shalini Mahadev (External Guide)
+- Public data contributors through the European Nucleotide Archive (ENA)
+
+---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+See the **LICENSE** file for details.
