@@ -304,16 +304,11 @@ REVA University
 
 # 👨‍💻 Author
 
-**Praveen Kumar S**
+**Praveen Kumar S**  
+🎓 M.Sc. Bioinformatics, REVA University
 
-M.Sc. Bioinformatics
-
-REVA University
-
-📧 Email: your_email@example.com
-
-💼 LinkedIn:
-https://linkedin.com/in/your-profile
+📧 **Email:** <praveen26092001@gmail.com>  
+💼 **LinkedIn:** <https://www.linkedin.com/in/praveen-kumar-s-104269230>
 
 ---
 
